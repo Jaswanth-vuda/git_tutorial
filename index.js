@@ -1,21 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import React,{useState} from 'react';
+import Footer from '../components/Footer';
+import InfoSection from '../components/InfoSection';
+import { homeObjOne, homeObjThree, homeObjTwo } from '../components/InfoSection/Data';
+import Info from '../components/MainSection';
+import Navbar from '../components/Navbar/Navbar';
+import Sidebar from '../components/Sidebar';
 
-import Main from './components/Main';
-import App from './App';
+// this is page when we open the website
+const HomePage = () =>{
+    const [isOpen,setIsOpen] = useState(false)
 
+    const toggle = () => {
+        setIsOpen(!isOpen)
+    }
 
-ReactDOM.render(
-  <div>
-    {/* <Main/> */}
-    <App />
-    </div>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    return(
+        <>
+            <Sidebar isOpen={isOpen} toggle={toggle}/>
+            <Navbar toggle={toggle}/>
+            {/* <Navbar1/> */}
+            <Info/>
+            <InfoSection {...homeObjOne}/>
+            <InfoSection {...homeObjTwo}/>
+            <InfoSection {...homeObjThree}/>
+            <Footer/>
+        </>
+    );
+} 
+export default HomePage
